@@ -5,4 +5,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: docker-compose --help
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - run: curl --proto '=https' --tlsv1.2 -sSf https://lets-cli.org/install.sh | sh -s -- -b .
+      - run: ./lets --version
+      - run: docker-compose --version
+      - run: ./lets test
